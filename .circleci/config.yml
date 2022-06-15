@@ -8,6 +8,10 @@ jobs:
     steps:
       - checkout
       - run:
+        name: Install Node.js dependancies
+        command: |
+          npm install
+      - run:
         name: Build App
         command: |
           npm run build
