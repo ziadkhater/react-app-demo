@@ -10,11 +10,11 @@ jobs:
       - run:
           name: Install Node.js dependancies
           command: |
-          npm install
+            npm install
       - run:
           name: Build App
           command: |
-          npm run build
+            npm run build
       
       - run:
           name: list build folder
