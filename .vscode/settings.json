@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/circleciconfig.json": "file:///d%3A/FWD/CICD/react-app/demo-pipeline/.circleci/config.yml"
+    }
+}
