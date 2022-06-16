@@ -43,7 +43,7 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/bucket.yml  \
               --stack-name Demo-react-app-${CIRCLE_WORKFLOW_ID:0:8} \
-              --parameters-overrides ID="${CIRCLE_WORKFLOW_ID:0:8}"
+              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:8}"
 
       - run:
           name: Upload build folder to bucket
