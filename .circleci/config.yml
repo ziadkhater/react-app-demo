@@ -1,5 +1,6 @@
+#Circleci Config file (Pipeline) has 2 Jobs
 version: 2.1
-
+#1st: install node build react app >> Build App from local/repo files >> save build folder using persist to workspace circleci feature
 jobs:
   build:                        # Job Name
     docker:
@@ -23,7 +24,8 @@ jobs:
           root: ~/
           paths:
             - project/build
-      
+#2nd: Recive the build folder from the previouse job >> Install amazon CLI on docker container >> create cloudformation stack using bucket.yml template
+# >> create bucket >>  upload build files to S3 bucket >> Output of the cloudformation is bucket URL >> which is the React app URL       
   deploy:
     docker:
       - image: cimg/base:stable
