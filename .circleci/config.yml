@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Install Circleci deps on docker container
           command: |
-            yup update
+            yum update
             yum install tar gzip 
       - attach_workspace:
           at: ~/      
