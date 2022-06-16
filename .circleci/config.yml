@@ -1,9 +1,9 @@
 version: 2.1
 
 jobs:
-  build:
+  build:                        # Job Name
     docker:
-      -  image: cimg/node:lts
+      -  image: cimg/node:lts   # Image for node.js app
 
     steps:
       - checkout
@@ -21,7 +21,27 @@ jobs:
           command: |
             ls build
 
+  deploy:
+    docker:
+      - image: amazon/awscli:latest
+    steps:
+      - checkout
+      - run:
+          name: Create new S3 bucket
+          command: |                      #takes the first 8 characters from workflow ID and create a unique stackname & Bucket name
+            aws configuration deploy \
+              --template-file .circleci\bucket.yml  \
+              --stack-name Demo-react-app-${CIRCLE_WORKFLOW_ID:0:8} \
+              --parameters-overrides ID="${CIRCLE_WORKFLOW_ID:0:8}"
+
+      - run:
+          name: Upload build folder to bucket
+          command: |
+            aws s3 sync build s3://demo-website-${CIRCLE_WORKFLOW_ID:0:8} --recursive
 workflows:
   default:
     jobs:
       - build
+      - deploy:
+          requires:
+            build
