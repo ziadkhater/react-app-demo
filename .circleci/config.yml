@@ -23,7 +23,7 @@ jobs:
 
   deploy:
     docker:
-      - image: amazon/awscli:latest
+      - image: amazon/aws-cli:latest
     steps:
       - checkout
       - run:
