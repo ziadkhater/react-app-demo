@@ -34,7 +34,7 @@ jobs:
           command: |
             sudo yum install tar gzip 
       - attach_workspace:
-        at: ~/      
+          at: ~/      
       - run:
           name: Create new S3 bucket
           command: |                      #takes the first 8 characters from workflow ID and create a unique stackname & Bucket name
