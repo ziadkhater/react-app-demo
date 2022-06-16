@@ -26,14 +26,15 @@ jobs:
       
   deploy:
     docker:
-      - image: amazon/aws-cli:latest
+      - image: cimg/base:stable
     steps:
       - checkout
       - run:
-          name: Install Circleci deps on docker container
+          name: Install AWS CLI 
           command: |
-            yum update
-            yum install tar gzip 
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            sudo ./aws/install
       - attach_workspace:
           at: ~/      
       - run:
